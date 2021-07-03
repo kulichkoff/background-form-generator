@@ -1,1 +1,20 @@
-<p>test-checkbox works!</p>
+<div class="checkbox-wrapper">
+  <div class="label">
+    <label>{{ title }}<span class="required" *ngIf="isRequired">*</span></label>
+  </div>
+
+  <div class="checkboxes">
+    <div
+      class="checkbox"
+      *ngFor="let checkbox of checkBoxes"
+    >
+      <input type="checkbox" [checked]="checkbox.checked">
+      <label>{{ checkbox.title }}</label>
+    </div>
+
+    <div class="checkbox" *ngIf="isIncludingCheckAll">
+      <input type="checkbox" (click)="checkAll()">
+      <label><strong>Выделить все</strong></label>
+    </div>
+  </div>
+</div>

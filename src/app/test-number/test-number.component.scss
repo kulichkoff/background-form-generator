@@ -1,0 +1,97 @@
+// Remove arrows from input number
+// For Mozilla
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+  margin: 0;
+}
+
+// For Chrome
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+
+.number {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 15px;
+
+  .label {
+    width: 140px;
+    min-height: 24px;
+    margin-right: 17px;
+
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 22px;
+    color: #000;
+
+    .required {
+      color: red;
+    }
+  }
+
+  input {
+    width: 55px;
+    height: 44px;
+    border: 1px solid #C3C3C3;
+    border-radius: 3px;
+    font-size: 17px;
+    color: #000;
+    padding-left: 15px;
+  }
+
+  .counter-group {
+    display: flex;
+    flex-direction: column;
+    margin-left: 5px;
+
+    .counter {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #DFDFDF;
+      width: 30px;
+      height: 22px;
+      border: none;
+      border-radius: 3px 3px 0 0;
+
+      .trngl-up {
+        display: flex;
+        align-self: center;
+        margin-top: 2px;
+        width: 0;
+        height: 0;
+        border-left: 6.6px solid transparent;
+        border-right: 6.6px solid transparent;
+        border-bottom: 7.8px solid #9D9D9D;
+      }
+
+      .trngl-down {
+        display: flex;
+        align-self: center;
+        margin-bo: 2px;
+        width: 0;
+        height: 0;
+        border-left: 6.6px solid transparent;
+        border-right: 6.6px solid transparent;
+        border-top: 7.8px solid #9D9D9D;
+      }
+    }
+
+    .counter:active {
+      background-color: #bfbfbf;
+    }
+
+    .counter + .counter {
+      border-top: 1px solid #9D9D9D;
+      border-radius: 0 0 3px 3px;
+    }
+  }
+
+}

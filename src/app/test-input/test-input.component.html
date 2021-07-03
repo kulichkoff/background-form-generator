@@ -1,1 +1,10 @@
-<p>test-input works!</p>
+<div class="input">
+  <div class="label">
+    <label>{{ title }}<span class="required" *ngIf="isRequired">*</span></label>
+  </div>
+
+  <div class="col">
+    <input type="text" [placeholder]="placeholder">
+    <small class="description">Напишите названия заведений, в которых вы учились.</small>
+  </div>
+</div>

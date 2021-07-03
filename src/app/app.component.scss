@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans&display=swap');
+
+#app-form {
+  font-family: 'PT Sans', sans-serif;
+  margin: 80px 135px;
+
+  nav {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-around;
+    width: 100%;
+    height: 75px;
+    background: #FFDA42;
+
+    ul {
+      display: flex;
+      flex-direction: row;
+      align-content: center;
+      justify-content: space-around;
+      list-style-type: none;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+
+      li {
+        width: max-content;
+        height: max-content;
+        a {
+          text-decoration: none;
+          color: black;
+          font-size: 24px;
+          font-weight: bold;
+        }
+      }
+
+      li:hover {
+        border-bottom: 2px solid black;
+      }
+    }
+  }
+
+  h1 {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 41px;
+    line-height: 53px;
+    margin-bottom: 42px;
+  }
+
+  .btn {
+    margin-top: 50px;
+    margin-left: 157px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    width: 139px !important;
+    height: 52px !important;
+    border: none;
+    border-radius: 3px;
+    background-color: #FFE783;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 22px;
+    color: #000000;
+  }
+}

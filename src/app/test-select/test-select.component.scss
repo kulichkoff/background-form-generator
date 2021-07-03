@@ -1,0 +1,122 @@
+.input {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 15px;
+
+  .label {
+    width: 140px;
+    min-height: 24px;
+    margin-right: 17px;
+
+    font-style: normal;
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 22px;
+    color: #000;
+
+    .required {
+      color: red;
+    }
+  }
+
+  div.select {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  button.select {
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    justify-content: space-between;
+    background-color: #fff;
+    width: 300px;
+    height: 44px;
+    border: 1px solid #C3C3C3;
+    border-radius: 3px;
+    font-size: 17px;
+    color: #000;
+
+    p {
+      display: flex;
+      margin: auto 15px;
+      align-content: center;
+      font-size: 17px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 22px;
+      letter-spacing: 0em;
+      text-align: left;
+    }
+
+    .arrow {
+      justify-self: end;
+      width: 10px;
+      height: 10px;
+      float: right;
+      border: none;
+      border-radius: 0;
+      border-top: 1px solid black;
+      border-left: 1px solid black;
+      transform: rotate(225deg);
+      margin: 12px 16px 17px 0;
+      transition: transform 0.3s, margin 0.3s, background 0.7s;
+    }
+  }
+
+  .select:hover {
+    background: #F5F5F5;
+  }
+
+  .select.active {
+    background: #F5F5F5;
+    .arrow {
+      margin: 17px 16px 12px 0;
+      transform: rotate(45deg);
+    }
+  }
+
+  .select-list {
+    display: none;
+
+    ul {
+      list-style-type: none;
+      width: 100%;
+      padding: 5px 0;
+      margin: 0;
+    }
+  }
+
+  .select-list.active {
+    display: flex;
+    justify-content: start;
+    align-content: start;
+    background-color: #fff;
+    border: none;
+    border-radius: 3px;
+    z-index: 10;
+    margin-bottom: -45%;
+
+    -webkit-box-shadow: 4px 3px 0px 2px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 4px 3px 0px 2px rgba(34, 60, 80, 0.2);
+    box-shadow: 4px 3px 0px 2px rgba(34, 60, 80, 0.2);
+  }
+
+  .select-list__element {
+    padding: 3px 0 3px 5px;
+  }
+
+  .select-list__element + .select-list__element {
+    margin-top: 5px;
+  }
+
+  .select-list__element.active {
+    background: #FFDA42;
+  }
+
+  .select-list__element:hover {
+    background: #FFE783;
+  }
+}

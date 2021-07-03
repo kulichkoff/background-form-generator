@@ -7,9 +7,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestCheckboxComponent implements OnInit {
 
+  public title: string = 'Навыки'
+  public isRequired: boolean = false
+  public isIncludingCheckAll: boolean = true
+  public isAllChecked: boolean = false
+
+  public checkBoxes = [
+    {id: 1, title: 'Общение', checked: false},
+    {id: 2, title: 'Вождение', checked: false},
+    {id: 3, title: 'Программирование', checked: false},
+    {id: 4, title: 'Самозащита', checked: false},
+    {id: 5, title: 'Вождение вертолета', checked: false},
+
+  ]
+
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  checkAll(): void {
+    if (!this.isAllChecked) {
+      this.checkBoxes.forEach((checkbox) => {
+        checkbox.checked = true
+      })
+      this.isAllChecked = true
+    } else {
+      this.checkBoxes.forEach((checkbox) => {
+        checkbox.checked = false
+      })
+      this.isAllChecked = false
+    }
+
   }
 
 }

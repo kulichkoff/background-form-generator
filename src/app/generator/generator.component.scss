@@ -1,0 +1,38 @@
+.wrapper {
+  padding-top: 80px;
+
+  input.header {
+    padding-left: 40px;
+    border: none;
+    font-size: 36px;
+    font-weight: 400;
+    border-bottom: 1px solid black;
+
+    &:focus {
+      outline: none;
+    }
+  }
+
+  .btn {
+    margin-top: 50px;
+    margin-left: 157px;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    width: 139px !important;
+    height: 52px !important;
+    border: none;
+    border-radius: 3px;
+    background-color: #FFE783;
+    font-style: normal;
+    font-weight: normal;
+    line-height: 12px;
+    font-size: 17px;
+    color: #000000;
+
+    &:active {
+      background-color: #ecd678;
+    }
+  }
+
+}
