@@ -3,6 +3,26 @@
 
   <div class="main-form">
     <ng-template #container></ng-template>
+
+    <div class="row">
+      <button class="add-btn" (click)="addComponent(testInput)">
+        <object data="assets/svg/plus.svg" type="image/svg+xml" class="svg"></object>
+        Добавить текстовое поле
+      </button>
+      <button class="add-btn" (click)="addComponent(testNumber)">
+        <object data="assets/svg/plus.svg" type="image/svg+xml" class="svg"></object>
+        Добавить числовое поле
+      </button>
+      <button class="add-btn" (click)="addComponent(testSelect)">
+        <object data="assets/svg/plus.svg" type="image/svg+xml" class="svg"></object>
+        Добавить поле с выбором
+      </button>
+      <button class="add-btn" (click)="addComponent(testCheckbox)">
+        <object data="assets/svg/plus.svg" type="image/svg+xml" class="svg"></object>
+        Добавить поле чекбоксов
+      </button>
+    </div>
+
     <button class="btn" (click)="openModal(content)">openModal()</button>
     <button type="button" class="btn" (click)="addComponent(testInput)"><p>Add input</p></button>
   </div>

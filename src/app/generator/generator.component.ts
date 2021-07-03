@@ -34,6 +34,7 @@ export class GeneratorComponent implements OnInit {
 
     // @ts-ignore
     this.components.push(component);
+    console.log(this.components)
   }
 
   removeComponent(componentClass: any) {
@@ -59,3 +60,4 @@ export class GeneratorComponent implements OnInit {
   }
 
 }
+

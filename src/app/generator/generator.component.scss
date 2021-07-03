@@ -13,6 +13,29 @@
     }
   }
 
+  .row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 15px;
+  }
+
+  .add-btn {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-content: center;
+    background: none;
+    border: none;
+    margin-right: 20px;
+
+    .svg {
+      height: 22px;
+      width: 22px;
+      margin-right: 10px;
+    }
+  }
+
   .btn {
     margin-top: 50px;
     margin-left: 157px;
@@ -32,6 +55,16 @@
 
     &:active {
       background-color: #ecd678;
+    }
+
+    p {
+      display: flex;
+      align-content: center;
+      justify-content: center;
+      width: 100%;
+      text-align: center;
+      margin: auto;
+      padding: 0;
     }
   }
 
