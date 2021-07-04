@@ -3,24 +3,20 @@
     <label>Семейное положение<span class="required">*</span></label>
   </div>
 
-  <div class="select">
-    <button type="button" class="select" (click)="onSelect()" [ngClass]="{ 'active': isSelectActive }">
-      <p>
-        {{ selectedItem.title }}
-      </p>
+  <div ngbDropdown class="select">
+    <button class="select" id="dropdown" ngbDropdownToggle [ngClass]="{ 'active': isSelectActive }">
+      <p>{{ selectedItem.title }}</p>
       <div class="arrow"></div>
     </button>
-    <div class="select-list" [ngClass]="{ 'active': isSelectActive }">
-      <ul>
-        <li
-          class="select-list__element"
-          *ngFor="let item of testingArray"
-          [ngClass]="{ 'active': selectedItem.id === item.id }"
-          (click)="selectItem(item.id)"
-        >
-          {{ item.title }}
-        </li>
-      </ul>
+    <div ngbDropdownMenu aria-labelledby="dropdown">
+      <button
+        ngbDropdownItem
+        *ngFor="let item of choices"
+        (click)="selectItem(item.id)"
+        [ngClass]="{ 'active': selectedItem.id === item.id }"
+      >
+        {{ item.title }}
+      </button>
     </div>
   </div>
 </div>

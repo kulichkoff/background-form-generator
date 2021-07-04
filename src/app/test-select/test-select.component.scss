@@ -47,7 +47,7 @@
       font-style: normal;
       font-weight: 400;
       line-height: 22px;
-      letter-spacing: 0em;
+      letter-spacing: 0;
       text-align: left;
     }
 
@@ -70,6 +70,10 @@
     background: #F5F5F5;
   }
 
+  .select:after {
+    content: none;
+  }
+
   .select.active {
     background: #F5F5F5;
     .arrow {
@@ -78,7 +82,7 @@
     }
   }
 
-  .select-list {
+  .dropdown-menu {
     display: none;
 
     ul {
@@ -89,34 +93,36 @@
     }
   }
 
-  .select-list.active {
+  .dropdown-menu.show {
     display: flex;
+    flex-direction: column;
+    width: 100%;
     justify-content: start;
     align-content: start;
     background-color: #fff;
     border: none;
     border-radius: 3px;
     z-index: 10;
-    margin-bottom: -45%;
 
-    -webkit-box-shadow: 4px 3px 0px 2px rgba(34, 60, 80, 0.2);
-    -moz-box-shadow: 4px 3px 0px 2px rgba(34, 60, 80, 0.2);
-    box-shadow: 4px 3px 0px 2px rgba(34, 60, 80, 0.2);
+    -webkit-box-shadow: 4px 3px 0 2px rgba(34, 60, 80, 0.2);
+    -moz-box-shadow: 4px 3px 0 2px rgba(34, 60, 80, 0.2);
+    box-shadow: 4px 3px 0 2px rgba(34, 60, 80, 0.2);
   }
 
-  .select-list__element {
+  .dropdown-item {
     padding: 3px 0 3px 5px;
   }
 
-  .select-list__element + .select-list__element {
+  .dropdown-item + .dropdown-item {
     margin-top: 5px;
   }
 
-  .select-list__element.active {
+  .dropdown-item.active {
     background: #FFDA42;
+    color: black;
   }
 
-  .select-list__element:hover {
+  .dropdown-item:hover {
     background: #FFE783;
   }
 }

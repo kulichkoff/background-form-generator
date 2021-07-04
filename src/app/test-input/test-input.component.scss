@@ -26,6 +26,8 @@
   .col {
     display: flex;
     flex-direction: column;
+    margin: 0;
+    padding: 0;
 
     .description {
       margin-top: 5px;
@@ -42,6 +44,7 @@
   input {
     padding: 0 0 0 15px;
     min-width: 300px;
+    max-width: 50%;
     height: 42px;
     border: 1px solid #C3C3C3;
     border-radius: 3px;

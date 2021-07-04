@@ -12,7 +12,7 @@ export class TestSelectComponent implements OnInit {
     id: 0,
     title: ''
   }
-  public testingArray = [
+  public choices = [
     {id: 1, title: "Не важно"},
     {id: 2, title: "важно"},
     {id: 3, title: "Не очень важно"},
@@ -23,7 +23,7 @@ export class TestSelectComponent implements OnInit {
 
   ngOnInit(): void {
     // @ts-ignore
-    this.selectedItem = this.testingArray.find((item) => item.id === 1)
+    this.selectedItem = this.choices.find((item) => item.id === 1)
   }
 
   onSelect():void {
@@ -33,7 +33,7 @@ export class TestSelectComponent implements OnInit {
   selectItem(id: number):void {
     this.isSelectActive = false;
     // @ts-ignore
-    this.selectedItem = this.testingArray.find((item) => item.id === id)
+    this.selectedItem = this.choices.find((item) => item.id === id)
   }
 
 }
