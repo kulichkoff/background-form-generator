@@ -32,6 +32,20 @@ export class GeneratorComponent implements OnInit {
         this.removeComponent(componentId)
       }
     )
+
+    formControllService.moveComponentUp$.subscribe(
+      componentId => {
+        console.log('Generator has got a message for move component up ' + componentId)
+        this.moveComponentUp(componentId)
+      }
+    )
+
+    formControllService.moveComponentDown$.subscribe(
+      componentId => {
+        console.log('Generator has got a message for move component up ' + componentId)
+        this.moveComponentDown(componentId)
+      }
+    )
   }
 
   addComponent(componentClass: any) {
@@ -47,7 +61,7 @@ export class GeneratorComponent implements OnInit {
   removeComponent(componentId: number) {
     // Find the component
     // @ts-ignore
-    const component: ViewRef = this.components.find((component) => component.instance.componentId === componentId);
+    const component = this.components.find((component) => component.instance.componentId === componentId);
     // @ts-ignore
     const componentIndex = this.components.indexOf(component);
 
@@ -56,6 +70,51 @@ export class GeneratorComponent implements OnInit {
       this.container.remove(componentIndex);
       this.components.splice(componentIndex, 1);
     }
+  }
+
+  moveComponentUp(componentId: number) {
+
+    // Find the component
+    // @ts-ignore
+    const component = this.components.find((component) => component.instance.componentId === componentId);
+   
+    // @ts-ignore
+    const componentIndex = this.components.indexOf(component);
+
+    if (componentIndex !== -1 && componentIndex > 0) {
+      // Get ViewRef object
+      // @ts-ignore
+      const componentViewRef: ViewRef = component['hostView']
+      
+      this.container.move(componentViewRef, componentIndex - 1);
+      
+      // Swap components in array
+      const temp = this.components[componentIndex - 1]
+      this.components[componentIndex - 1] = this.components[componentIndex]
+      this.components[componentIndex] = temp
+    }
+  }
+
+  moveComponentDown(componentId: number) {
+    // Find the component
+    // @ts-ignore
+    const component = this.components.find((component) => component.instance.componentId === componentId);
+    // @ts-ignore
+    const componentIndex = this.components.indexOf(component);
+
+    if (componentIndex !== -1 && componentIndex < this.components.length - 1) {
+      // Get ViewRef object
+      // @ts-ignore
+      const componentViewRef: ViewRef = component['hostView']
+      
+      this.container.move(componentViewRef, componentIndex + 1);
+      
+      // Swap components in array
+      const temp = this.components[componentIndex + 1]
+      this.components[componentIndex + 1] = this.components[componentIndex]
+      this.components[componentIndex] = temp
+    }
+
   }
 
 

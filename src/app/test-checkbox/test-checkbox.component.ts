@@ -32,6 +32,14 @@ export class TestCheckboxComponent implements OnInit {
     this.formControllService.removeComponent(this.componentId)
   }
 
+  moveUp(): void {
+    this.formControllService.moveComponentUp(this.componentId)
+  }
+
+  moveDown(): void {
+    this.formControllService.moveComponentDown(this.componentId)
+  }
+
   checkAll(): void {
     if (!this.isAllChecked) {
       this.checkBoxes.forEach((checkbox) => {

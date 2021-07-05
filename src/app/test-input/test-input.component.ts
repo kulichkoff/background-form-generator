@@ -21,6 +21,14 @@ export class TestInputComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  moveUp(): void {
+    this.formControllService.moveComponentUp(this.componentId)
+  }
+
+  moveDown(): void {
+    this.formControllService.moveComponentDown(this.componentId)
+  }
+
   remove(): void {
     this.formControllService.removeComponent(this.componentId)
   }

@@ -32,6 +32,14 @@ export class TestSelectComponent implements OnInit {
     this.formControllService.removeComponent(this.componentId)
   }
 
+  moveUp(): void {
+    this.formControllService.moveComponentUp(this.componentId)
+  }
+
+  moveDown(): void {
+    this.formControllService.moveComponentDown(this.componentId)
+  }
+
   onSelect():void {
     this.isSelectActive = !this.isSelectActive
   }

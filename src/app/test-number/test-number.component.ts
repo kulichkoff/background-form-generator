@@ -23,6 +23,14 @@ export class TestNumberComponent implements OnInit {
     this.formControllService.removeComponent(this.componentId)
   }
 
+  moveUp(): void {
+    this.formControllService.moveComponentUp(this.componentId)
+  }
+
+  moveDown(): void {
+    this.formControllService.moveComponentDown(this.componentId)
+  }
+
   counterUp(): void {
     this.counterValue += this.step
     if (this.counterValue > this.maximumValue)
