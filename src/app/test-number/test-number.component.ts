@@ -9,10 +9,14 @@ import { FormControllerService } from '../form-controller.service';
 export class TestNumberComponent implements OnInit {
 
   public componentId: number = Date.now()
+  public label: string = ''
+  public required: boolean = false
+  public description: string = ''
+  public placeholder: string = ''
   public counterValue: number = 1
   public step: number = 1
   public minimalValue: number = 0
-  public maximumValue: number = 999
+  public maximumValue: number = 99900
 
   constructor(private formControllService: FormControllerService) { }
 

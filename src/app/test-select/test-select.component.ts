@@ -1,3 +1,4 @@
+import { Choice } from './../form-controller.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControllerService } from '../form-controller.service';
 
@@ -9,12 +10,15 @@ import { FormControllerService } from '../form-controller.service';
 export class TestSelectComponent implements OnInit {
 
   public componentId: number = Date.now()
-  public isSelectActive: boolean = false
-  public selectedItem = {
+  public label: string = ''
+  public required: boolean = false
+  public description: string = ''
+  public placeholder: string = ''
+  public selectedItem: Choice = {
     id: 0,
     title: ''
   }
-  public choices = [
+  public choices: Choice[] = [
     {id: 1, title: "Не важно"},
     {id: 2, title: "важно"},
     {id: 3, title: "Не очень важно"},
@@ -40,12 +44,7 @@ export class TestSelectComponent implements OnInit {
     this.formControllService.moveComponentDown(this.componentId)
   }
 
-  onSelect():void {
-    this.isSelectActive = !this.isSelectActive
-  }
-
   selectItem(id: number):void {
-    this.isSelectActive = false;
     // @ts-ignore
     this.selectedItem = this.choices.find((item) => item.id === id)
   }

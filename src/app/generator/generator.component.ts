@@ -1,3 +1,4 @@
+import { TestField } from './../form-controller.service';
 import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef, ViewRef } from '@angular/core';
 import {TestCheckboxComponent} from "../test-checkbox/test-checkbox.component";
 import {TestInputComponent} from "../test-input/test-input.component";
@@ -25,22 +26,33 @@ export class GeneratorComponent implements OnInit {
   testNumber = TestNumberComponent
   testSelect = TestSelectComponent
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver, private ngbModal: NgbModal, formControllService: FormControllerService) {
-    formControllService.removeComponentObs$.subscribe(
+  // Variables for creating component
+  testField: TestField = {
+    label: '',
+    description: '',
+    placeholder: '',
+    required: false,
+    choices: [],
+    componentClass: null,
+    isIncludeCheckAll: false
+  }
+
+  constructor(private componentFactoryResolver: ComponentFactoryResolver, private ngbModal: NgbModal, private formControllService: FormControllerService) {
+    this.formControllService.removeComponentObs$.subscribe(
       componentId => {
         console.log('Generator has got a message for remove component ' + componentId)
         this.removeComponent(componentId)
       }
     )
 
-    formControllService.moveComponentUp$.subscribe(
+    this.formControllService.moveComponentUp$.subscribe(
       componentId => {
         console.log('Generator has got a message for move component up ' + componentId)
         this.moveComponentUp(componentId)
       }
     )
 
-    formControllService.moveComponentDown$.subscribe(
+    this.formControllService.moveComponentDown$.subscribe(
       componentId => {
         console.log('Generator has got a message for move component up ' + componentId)
         this.moveComponentDown(componentId)
@@ -52,6 +64,8 @@ export class GeneratorComponent implements OnInit {
     // Create component dynamically inside the ng-template
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentClass)
     const component = this.container.createComponent(componentFactory)
+
+    this.formControllService.initTestField(this.testField)
 
     // @ts-ignore
     this.components.push(component);

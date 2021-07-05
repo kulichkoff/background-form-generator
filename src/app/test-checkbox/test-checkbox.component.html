@@ -1,23 +1,25 @@
 <div class="checkbox-wrapper">
   <div class="col">
     <div class="label">
-      <label
-        >{{ title }}<span class="required" *ngIf="isRequired">*</span></label
-      >
+      <label *ngIf="label">
+        {{ label }}
+        <span class="required" *ngIf="required">*</span>
+      </label>
     </div>
 
     <div class="checkboxes">
-      <div class="checkbox" *ngFor="let checkbox of checkBoxes">
-        <input type="checkbox" [checked]="checkbox.checked" />
+      <div class="checkbox" *ngFor="let checkbox of choices">
+        <input type="checkbox" [checked]="checkbox.active" />
         <label>{{ checkbox.title }}</label>
       </div>
 
-      <div class="checkbox" *ngIf="isIncludingCheckAll">
+      <div class="checkbox" *ngIf="isIncludeCheckAll">
         <input type="checkbox" (click)="checkAll()" />
         <label><strong>Выделить все</strong></label>
       </div>
     </div>
 
+    <!-- Control panel -->
     <div class="btn-group" role="group" aria-label="Configures">
       <button (click)="moveUp()" type="button" class="btn btn-secondary">
         <i class="fas fa-chevron-up"></i>

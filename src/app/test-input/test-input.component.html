@@ -1,15 +1,17 @@
 <div class="input">
   <div class="label">
-    <label>{{ title }}<span class="required" *ngIf="isRequired">*</span></label>
+    <label *ngIf="label">
+      {{ label }}
+      <span class="required" *ngIf="required">*</span>
+    </label>
   </div>
 
   <div class="col">
     <input type="text" [placeholder]="placeholder" />
-    <small class="description"
-      >Напишите названия заведений, в которых вы учились.</small
-    >
+    <small *ngIf="description" class="description">{{ description }}</small>
   </div>
 
+  <!-- Control panel -->
   <div class="btn-group" role="group" aria-label="Configures">
     <button (click)="moveUp()" type="button" class="btn btn-secondary">
       <i class="fas fa-chevron-up"></i>

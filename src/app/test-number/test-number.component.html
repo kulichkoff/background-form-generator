@@ -1,7 +1,10 @@
 <div class="number">
   <div class="col">
     <div class="label">
-      <label>Возраст<span class="required">*</span></label>
+      <label *ngIf="label">
+        {{ label }}
+        <span class="required" *ngIf="required">*</span>
+      </label>
     </div>
 
     <input type="number" [(ngModel)]="counterValue" />
@@ -19,6 +22,7 @@
     </div>
   </div>
 
+  <!-- Control panel -->
   <div class="btn-group" role="group" aria-label="Configures">
     <button (click)="moveUp()" type="button" class="btn btn-secondary">
       <i class="fas fa-chevron-up"></i>

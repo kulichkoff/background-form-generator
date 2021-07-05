@@ -1,5 +1,7 @@
+import { Choice, TestField } from './../form-controller.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControllerService } from '../form-controller.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-test-checkbox',
@@ -9,23 +11,37 @@ import { FormControllerService } from '../form-controller.service';
 export class TestCheckboxComponent implements OnInit {
 
   public componentId: number = Date.now()
-  public title: string = 'Навыки'
-  public isRequired: boolean = false
-  public isIncludingCheckAll: boolean = true
+  public label: string = ''
+  public required: boolean = false
+  public isIncludeCheckAll: boolean = true
   public isAllChecked: boolean = false
-
-  public checkBoxes = [
-    {id: 1, title: 'Общение', checked: false},
-    {id: 2, title: 'Вождение', checked: false},
-    {id: 3, title: 'Программирование', checked: false},
-    {id: 4, title: 'Самозащита', checked: false},
-    {id: 5, title: 'Вождение вертолета', checked: false},
+  public choices: Choice[] = [
+    {id: 1, title: 'Общение', active: false},
+    {id: 2, title: 'Вождение', active: false},
+    {id: 3, title: 'Программирование', active: false},
+    {id: 4, title: 'Самозащита', active: false},
+    {id: 5, title: 'Вождение вертолета', active: false},
 
   ]
 
-  constructor(private formControllService: FormControllerService) { }
+  constructor(private formControllService: FormControllerService) {
+    this.formControllService.initTestField$
+      .pipe(first())
+      .subscribe(
+      (testField) => {
+        this.label = testField.label
+        if (testField.required)
+          this.required = testField.required
+        if (testField.isIncludeCheckAll)
+          this.isIncludeCheckAll = testField.isIncludeCheckAll
+        if (testField.choices)
+          this.choices = testField.choices
+      }
+    )
+  }
 
   ngOnInit(): void {
+    
   }
 
   remove(): void {
@@ -42,13 +58,13 @@ export class TestCheckboxComponent implements OnInit {
 
   checkAll(): void {
     if (!this.isAllChecked) {
-      this.checkBoxes.forEach((checkbox) => {
-        checkbox.checked = true
+      this.choices.forEach((checkbox) => {
+        checkbox.active = true
       })
       this.isAllChecked = true
     } else {
-      this.checkBoxes.forEach((checkbox) => {
-        checkbox.checked = false
+      this.choices.forEach((checkbox) => {
+        checkbox.active = false
       })
       this.isAllChecked = false
     }
