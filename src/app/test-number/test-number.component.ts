@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControllerService } from '../form-controller.service';
 
 @Component({
   selector: 'app-test-number',
@@ -7,14 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestNumberComponent implements OnInit {
 
+  public componentId: number = Date.now()
   public counterValue: number = 1
   public step: number = 1
   public minimalValue: number = 0
   public maximumValue: number = 999
 
-  constructor() { }
+  constructor(private formControllService: FormControllerService) { }
 
   ngOnInit(): void {
+  }
+
+  remove(): void {
+    this.formControllService.removeComponent(this.componentId)
   }
 
   counterUp(): void {

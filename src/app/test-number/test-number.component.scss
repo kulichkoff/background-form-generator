@@ -20,6 +20,15 @@ input[type=number]::-webkit-outer-spin-button {
   align-items: center;
   margin-bottom: 15px;
 
+  .col {
+    margin: 0;
+    padding: 0;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: start;
+    align-content: start;
+  }
+
   .label {
     width: 140px;
     min-height: 24px;
@@ -34,6 +43,16 @@ input[type=number]::-webkit-outer-spin-button {
     .required {
       color: red;
     }
+  }
+
+  .btn-group {
+    display: none;
+  }
+
+  &:hover .btn-group {
+    display: inline-flex;
+    float: right;
+    vertical-align: top !important;
   }
 
   input {

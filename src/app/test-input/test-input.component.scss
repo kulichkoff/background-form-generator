@@ -41,6 +41,16 @@
     }
   }
 
+  .btn-group {
+    display: none;
+  }
+
+  &:hover .btn-group {
+    display: inline-flex;
+    float: right;
+    vertical-align: top !important;
+  }
+
   input {
     padding: 0 0 0 15px;
     min-width: 300px;

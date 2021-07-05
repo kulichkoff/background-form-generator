@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControllerService } from '../form-controller.service';
 
 @Component({
   selector: 'app-test-select',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestSelectComponent implements OnInit {
 
+  public componentId: number = Date.now()
   public isSelectActive: boolean = false
   public selectedItem = {
     id: 0,
@@ -19,11 +21,15 @@ export class TestSelectComponent implements OnInit {
     {id: 4, title: "Очень важно"},
   ]
 
-  constructor() { }
+  constructor(private formControllService: FormControllerService) { }
 
   ngOnInit(): void {
     // @ts-ignore
     this.selectedItem = this.choices.find((item) => item.id === 1)
+  }
+
+  remove(): void {
+    this.formControllService.removeComponent(this.componentId)
   }
 
   onSelect():void {

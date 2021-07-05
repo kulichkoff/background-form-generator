@@ -4,7 +4,24 @@
   </div>
 
   <div class="col">
-    <input type="text" [placeholder]="placeholder">
-    <small class="description">Напишите названия заведений, в которых вы учились.</small>
+    <input type="text" [placeholder]="placeholder" />
+    <small class="description"
+      >Напишите названия заведений, в которых вы учились.</small
+    >
+  </div>
+
+  <div class="btn-group" role="group" aria-label="Configures">
+    <button type="button" class="btn btn-secondary">
+      <i class="fas fa-chevron-up"></i>
+    </button>
+    <button type="button" class="btn btn-secondary">
+      <i class="fas fa-chevron-down"></i>
+    </button>
+    <button type="button" class="btn btn-secondary">
+      <i class="fas fa-tools"></i>
+    </button>
+    <button (click)="remove()" type="button" class="btn btn-secondary">
+      <i class="fas fa-minus"></i>
+    </button>
   </div>
 </div>

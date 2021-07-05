@@ -1,9 +1,10 @@
-import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef, ViewRef } from '@angular/core';
 import {TestCheckboxComponent} from "../test-checkbox/test-checkbox.component";
 import {TestInputComponent} from "../test-input/test-input.component";
 import {TestNumberComponent} from "../test-number/test-number.component";
 import {TestSelectComponent} from "../test-select/test-select.component";
-import {NgbModal, NgbModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import { FormControllerService } from '../form-controller.service';
 
 @Component({
   selector: 'app-generator',
@@ -24,7 +25,13 @@ export class GeneratorComponent implements OnInit {
   testNumber = TestNumberComponent
   testSelect = TestSelectComponent
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver, private ngbModal: NgbModal) {
+  constructor(private componentFactoryResolver: ComponentFactoryResolver, private ngbModal: NgbModal, formControllService: FormControllerService) {
+    formControllService.removeComponentObs$.subscribe(
+      componentId => {
+        console.log('Generator has got a message for remove component ' + componentId)
+        this.removeComponent(componentId)
+      }
+    )
   }
 
   addComponent(componentClass: any) {
@@ -37,20 +44,20 @@ export class GeneratorComponent implements OnInit {
     console.log(this.components)
   }
 
-  removeComponent(componentClass: any) {
+  removeComponent(componentId: number) {
     // Find the component
     // @ts-ignore
-    let component = this.components.find((component) => component.instance instanceof componentClass);
+    const component: ViewRef = this.components.find((component) => component.instance.componentId === componentId);
     // @ts-ignore
-    let componentIndex = this.components.indexOf(component);
+    const componentIndex = this.components.indexOf(component);
 
     if (componentIndex !== -1) {
       // Remove component from both view and array
-      // @ts-ignore
-      this.container.remove(this.container.indexOf(component));
+      this.container.remove(componentIndex);
       this.components.splice(componentIndex, 1);
     }
   }
+
 
   openModal(content: any): void {
     this.ngbModal.open(content)

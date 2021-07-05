@@ -1,8 +1,18 @@
 .input {
   display: flex;
+  width: 100%;
   flex-direction: row;
+  justify-content: space-between;
   align-items: center;
   margin-bottom: 15px;
+
+  .col {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: start;
+    margin: 0;
+    padding: 0;
+  }
 
   .label {
     width: 140px;
@@ -91,6 +101,16 @@
       padding: 5px 0;
       margin: 0;
     }
+  }
+
+  .btn-group {
+    display: none;
+  }
+
+  &:hover .btn-group {
+    display: flex;
+    justify-self: right;
+    align-self: start;
   }
 
   .dropdown-menu.show {

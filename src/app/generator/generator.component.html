@@ -1,5 +1,10 @@
 <div class="wrapper">
-  <input class="header" type="text" [(ngModel)]="title" placeholder="Название формы">
+  <input
+    class="header"
+    type="text"
+    [(ngModel)]="title"
+    placeholder="Название формы"
+  />
 
   <div class="main-form">
     <ng-template #container></ng-template>
@@ -7,32 +12,55 @@
     <!--  Control buttons  -->
     <div class="row">
       <button class="add-btn" (click)="addComponent(testInput)">
-        <object data="assets/svg/plus.svg" type="image/svg+xml" class="svg"></object>
+        <object
+          data="assets/svg/plus.svg"
+          type="image/svg+xml"
+          class="svg"
+        ></object>
         Добавить текстовое поле
       </button>
       <button class="add-btn" (click)="addComponent(testNumber)">
-        <object data="assets/svg/plus.svg" type="image/svg+xml" class="svg"></object>
+        <object
+          data="assets/svg/plus.svg"
+          type="image/svg+xml"
+          class="svg"
+        ></object>
         Добавить числовое поле
       </button>
       <button class="add-btn" (click)="addComponent(testSelect)">
-        <object data="assets/svg/plus.svg" type="image/svg+xml" class="svg"></object>
+        <object
+          data="assets/svg/plus.svg"
+          type="image/svg+xml"
+          class="svg"
+        ></object>
         Добавить поле с выбором
       </button>
       <button class="add-btn" (click)="addComponent(testCheckbox)">
-        <object data="assets/svg/plus.svg" type="image/svg+xml" class="svg"></object>
+        <object
+          data="assets/svg/plus.svg"
+          type="image/svg+xml"
+          class="svg"
+        ></object>
         Добавить поле чекбоксов
       </button>
     </div>
 
     <button class="btn" (click)="openModal(content)">openModal()</button>
-    <button type="button" class="btn" (click)="addComponent(testInput)"><p>Add input</p></button>
+    <button type="button" class="btn" (click)="addComponent(testInput)">
+      <p>Add input</p>
+    </button>
   </div>
   <button type="button" class="btn"><p>Сохранить</p></button>
 
   <ng-template #content let-modal>
     <div class="modal-header">
       <h4 class="modal-title" id="modal-basic-title">Profile update</h4>
-      <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
         <span aria-hidden="true">&times;</span>
       </button>
     </div>
@@ -41,16 +69,33 @@
         <div class="form-group">
           <label for="dateOfBirth">Date of birth</label>
           <div class="input-group">
-            <input id="dateOfBirth" class="form-control" placeholder="yyyy-mm-dd" name="dp" ngbDatepicker #dp="ngbDatepicker">
+            <input
+              id="dateOfBirth"
+              class="form-control"
+              placeholder="yyyy-mm-dd"
+              name="dp"
+              ngbDatepicker
+              #dp="ngbDatepicker"
+            />
             <div class="input-group-append">
-              <button class="btn btn-outline-secondary calendar" (click)="dp.toggle()" type="button"></button>
+              <button
+                class="btn btn-outline-secondary calendar"
+                (click)="dp.toggle()"
+                type="button"
+              ></button>
             </div>
           </div>
         </div>
       </form>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Save</button>
+      <button
+        type="button"
+        class="btn btn-outline-dark"
+        (click)="modal.close('Save click')"
+      >
+        Save
+      </button>
     </div>
   </ng-template>
 </div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormControllerService } from '../form-controller.service';
 
 @Component({
   selector: 'app-test-checkbox',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TestCheckboxComponent implements OnInit {
 
+  public componentId: number = Date.now()
   public title: string = 'Навыки'
   public isRequired: boolean = false
   public isIncludingCheckAll: boolean = true
@@ -21,9 +23,13 @@ export class TestCheckboxComponent implements OnInit {
 
   ]
 
-  constructor() { }
+  constructor(private formControllService: FormControllerService) { }
 
   ngOnInit(): void {
+  }
+
+  remove(): void {
+    this.formControllService.removeComponent(this.componentId)
   }
 
   checkAll(): void {
