@@ -1,6 +1,7 @@
 import { Choice } from './../form-controller.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControllerService } from '../form-controller.service';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-test-select',
@@ -12,24 +13,32 @@ export class TestSelectComponent implements OnInit {
   public componentId: number = Date.now()
   public label: string = ''
   public required: boolean = false
-  public description: string = ''
-  public placeholder: string = ''
   public selectedItem: Choice = {
     id: 0,
     title: ''
   }
   public choices: Choice[] = [
-    {id: 1, title: "Не важно"},
-    {id: 2, title: "важно"},
-    {id: 3, title: "Не очень важно"},
-    {id: 4, title: "Очень важно"},
   ]
 
-  constructor(private formControllService: FormControllerService) { }
+  constructor(private formControllService: FormControllerService) {
+    this.formControllService.initTestField$
+      .pipe(first())
+      .subscribe(
+      (testField) => {
+        this.label = testField.label
+        if (testField.required)
+          this.required = testField.required
+        if (testField.choices) {
+          this.choices = testField.choices
+          this.selectedItem = this.choices[0]
+        }
+          
+
+      }
+    )
+  }
 
   ngOnInit(): void {
-    // @ts-ignore
-    this.selectedItem = this.choices.find((item) => item.id === 1)
   }
 
   remove(): void {

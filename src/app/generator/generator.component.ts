@@ -1,4 +1,4 @@
-import { TestField } from './../form-controller.service';
+import { TestField, Choice } from './../form-controller.service';
 import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef, ViewRef } from '@angular/core';
 import {TestCheckboxComponent} from "../test-checkbox/test-checkbox.component";
 import {TestInputComponent} from "../test-input/test-input.component";
@@ -36,6 +36,7 @@ export class GeneratorComponent implements OnInit {
     componentClass: null,
     isIncludeCheckAll: false
   }
+  choicesText: string = ''
 
   constructor(private componentFactoryResolver: ComponentFactoryResolver, private ngbModal: NgbModal, private formControllService: FormControllerService) {
     this.formControllService.removeComponentObs$.subscribe(
@@ -65,7 +66,29 @@ export class GeneratorComponent implements OnInit {
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(componentClass)
     const component = this.container.createComponent(componentFactory)
 
+    let choicesArray = this.choicesText.split(',')
+
+    let choices: Choice[] = []
+    choicesArray.forEach((choice, idx) => {
+      choices.push(
+        {id: idx, title: choice, active: false}
+      )
+    })
+
+    this.testField.choices = choices
     this.formControllService.initTestField(this.testField)
+
+    // Empty all
+    this.choicesText = ''
+    this.testField = {
+      label: '',
+      description: '',
+      placeholder: '',
+      required: false,
+      choices: [],
+      componentClass: null,
+      isIncludeCheckAll: false
+    }
 
     // @ts-ignore
     this.components.push(component);
@@ -134,6 +157,10 @@ export class GeneratorComponent implements OnInit {
 
   openModal(content: any): void {
     this.ngbModal.open(content)
+  }
+
+  saveForm(): void {
+    
   }
 
   ngOnInit(): void {

@@ -11,7 +11,7 @@
 
     <!--  Control buttons  -->
     <div class="row">
-      <button class="add-btn" (click)="addComponent(testInput)">
+      <button class="add-btn" (click)="openModal(input)">
         <object
           data="assets/svg/plus.svg"
           type="image/svg+xml"
@@ -19,7 +19,7 @@
         ></object>
         Добавить текстовое поле
       </button>
-      <button class="add-btn" (click)="addComponent(testNumber)">
+      <button class="add-btn" (click)="openModal(number)">
         <object
           data="assets/svg/plus.svg"
           type="image/svg+xml"
@@ -27,7 +27,7 @@
         ></object>
         Добавить числовое поле
       </button>
-      <button class="add-btn" (click)="addComponent(testSelect)">
+      <button class="add-btn" (click)="openModal(select)">
         <object
           data="assets/svg/plus.svg"
           type="image/svg+xml"
@@ -36,7 +36,6 @@
         Добавить поле с выбором
       </button>
 
-      <!-- (click)="addComponent(testCheckbox)" -->
       <button class="add-btn" (click)="openModal(checkbox)">
         <object
           data="assets/svg/plus.svg"
@@ -46,13 +45,189 @@
         Добавить поле чекбоксов
       </button>
     </div>
-
-    <button class="btn">openModal()</button>
-    <button type="button" class="btn" (click)="addComponent(testInput)">
-      <p>Add input</p>
-    </button>
   </div>
-  <button type="button" class="btn"><p>Сохранить</p></button>
+
+  <button type="button" class="btn" (click)="saveForm()">
+    <p>Сохранить</p>
+  </button>
+
+  <!-- Modal windows -->
+  <ng-template #select let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Создать селект</h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label for="label">Название поля</label>
+          <input
+            id="label"
+            class="form-control"
+            type="text"
+            placeholder="Например, Навыки"
+            name="label"
+            [(ngModel)]="testField.label"
+          />
+        </div>
+        <div class="form-group ml-4">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="required"
+            [(ngModel)]="testField.required"
+            name="required"
+          />
+          <label for="required">Обязательное поле</label>
+        </div>
+
+        <div class="form-group">
+          <label for="choices">Варианты выбора (через запятую)</label>
+          <input
+            type="text"
+            id="choices"
+            class="form-control"
+            name="choices"
+            [(ngModel)]="choicesText"
+          />
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-outline-dark"
+        (click)="addComponent(testSelect)"
+      >
+        Сохранить
+      </button>
+    </div>
+  </ng-template>
+
+  <ng-template #number let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Создать числовоеполе</h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label for="label">Название поля</label>
+          <input
+            id="label"
+            class="form-control"
+            type="text"
+            placeholder="Например, ФИО"
+            name="label"
+            [(ngModel)]="testField.label"
+          />
+        </div>
+        <div class="form-group ml-4">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="required"
+            [(ngModel)]="testField.required"
+            name="required"
+          />
+          <label for="required">Обязательное поле</label>
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-outline-dark"
+        (click)="addComponent(testNumber)"
+      >
+        Сохранить
+      </button>
+    </div>
+  </ng-template>
+
+  <ng-template #input let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Создать текстовое поле</h4>
+      <button
+        type="button"
+        class="close"
+        aria-label="Close"
+        (click)="modal.dismiss('Cross click')"
+      >
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="form-group">
+          <label for="label">Название поля</label>
+          <input
+            id="label"
+            class="form-control"
+            type="text"
+            placeholder="Например, ФИО"
+            name="label"
+            [(ngModel)]="testField.label"
+          />
+        </div>
+        <div class="form-group ml-4">
+          <input
+            class="form-check-input"
+            type="checkbox"
+            id="required"
+            [(ngModel)]="testField.required"
+            name="required"
+          />
+          <label for="required">Обязательное поле</label>
+        </div>
+        <div class="form-group">
+          <label for="description">Описание поля</label>
+          <input
+            id="label"
+            class="form-control"
+            type="text"
+            placeholder="Текст под текстовым полем"
+            name="description"
+            [(ngModel)]="testField.description"
+          />
+        </div>
+        <div class="form-group">
+          <label for="placeholder">Название внутри поля</label>
+          <input
+            id="label"
+            class="form-control"
+            type="text"
+            placeholder="Например, опишите ваши особенности"
+            name="placeholder"
+            [(ngModel)]="testField.placeholder"
+          />
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-outline-dark"
+        (click)="addComponent(testInput)"
+      >
+        Сохранить
+      </button>
+    </div>
+  </ng-template>
 
   <ng-template #checkbox let-modal>
     <div class="modal-header">
@@ -100,7 +275,16 @@
           <label for="check-all">Возможность отметить всё</label>
         </div>
 
-        <button type="button" class="btn btn-danger">Добавить</button>
+        <div class="form-group">
+          <label for="choices">Варианты выбора (через запятую)</label>
+          <input
+            type="text"
+            id="choices"
+            class="form-control"
+            name="choices"
+            [(ngModel)]="choicesText"
+          />
+        </div>
       </form>
     </div>
     <div class="modal-footer">

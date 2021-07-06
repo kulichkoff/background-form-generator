@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { first } from 'rxjs/operators';
 import { FormControllerService } from '../form-controller.service';
 
 @Component({
@@ -11,14 +12,22 @@ export class TestNumberComponent implements OnInit {
   public componentId: number = Date.now()
   public label: string = ''
   public required: boolean = false
-  public description: string = ''
-  public placeholder: string = ''
   public counterValue: number = 1
   public step: number = 1
   public minimalValue: number = 0
   public maximumValue: number = 99900
 
-  constructor(private formControllService: FormControllerService) { }
+  constructor(private formControllService: FormControllerService) {
+    this.formControllService.initTestField$
+      .pipe(first())
+      .subscribe(
+      (testField) => {
+        this.label = testField.label
+        if (testField.required)
+          this.required = testField.required
+      }
+    )
+  }
 
   ngOnInit(): void {
   }

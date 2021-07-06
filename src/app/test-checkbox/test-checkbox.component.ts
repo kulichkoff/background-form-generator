@@ -13,7 +13,7 @@ export class TestCheckboxComponent implements OnInit {
   public componentId: number = Date.now()
   public label: string = ''
   public required: boolean = false
-  public isIncludeCheckAll: boolean = true
+  public isIncludeCheckAll: boolean = false
   public isAllChecked: boolean = false
   public choices: Choice[] = [
     {id: 1, title: 'Общение', active: false},

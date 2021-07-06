@@ -1,5 +1,6 @@
 import { FormControllerService } from './../form-controller.service';
 import { Component, OnInit, } from '@angular/core';
+import { first } from 'rxjs/operators';
 
 @Component({
   selector: 'app-test-input',
@@ -15,6 +16,19 @@ export class TestInputComponent implements OnInit {
   public placeholder: string = ''
 
   constructor(private formControllService: FormControllerService) {
+    this.formControllService.initTestField$
+      .pipe(first())
+      .subscribe(
+      (testField) => {
+        this.label = testField.label
+        if (testField.required)
+          this.required = testField.required
+        if (testField.description)
+          this.description = testField.description
+        if (testField.placeholder)
+          this.placeholder = testField.placeholder
+      }
+    )
   }
 
   ngOnInit(): void {
