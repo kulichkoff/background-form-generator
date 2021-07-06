@@ -1,4 +1,4 @@
-import { TestField, Choice } from './../form-controller.service';
+import { TestField, Choice, TestForm } from './../form-controller.service';
 import { Component, ComponentFactoryResolver, OnInit, ViewChild, ViewContainerRef, ViewRef } from '@angular/core';
 import {TestCheckboxComponent} from "../test-checkbox/test-checkbox.component";
 import {TestInputComponent} from "../test-input/test-input.component";
@@ -6,6 +6,7 @@ import {TestNumberComponent} from "../test-number/test-number.component";
 import {TestSelectComponent} from "../test-select/test-select.component";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import { FormControllerService } from '../form-controller.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-generator',
@@ -17,8 +18,11 @@ export class GeneratorComponent implements OnInit {
   // @ts-ignore
   @ViewChild('container', {read: ViewContainerRef}) container: ViewContainerRef
 
-  title = ''
-
+  public testForm: TestForm = {
+    title: '',
+    components: []
+  }
+  
   components = []
 
   testCheckbox = TestCheckboxComponent
@@ -38,7 +42,7 @@ export class GeneratorComponent implements OnInit {
   }
   choicesText: string = ''
 
-  constructor(private componentFactoryResolver: ComponentFactoryResolver, private ngbModal: NgbModal, private formControllService: FormControllerService) {
+  constructor(private http: HttpClient, private componentFactoryResolver: ComponentFactoryResolver, private ngbModal: NgbModal, private formControllService: FormControllerService) {
     this.formControllService.removeComponentObs$.subscribe(
       componentId => {
         console.log('Generator has got a message for remove component ' + componentId)
@@ -76,7 +80,9 @@ export class GeneratorComponent implements OnInit {
     })
 
     this.testField.choices = choices
+    this.testField.componentClass = componentClass
     this.formControllService.initTestField(this.testField)
+    this.testForm.components.push(this.testField)
 
     // Empty all
     this.choicesText = ''
@@ -92,7 +98,6 @@ export class GeneratorComponent implements OnInit {
 
     // @ts-ignore
     this.components.push(component);
-    console.log(this.components)
   }
 
   removeComponent(componentId: number) {
@@ -103,9 +108,9 @@ export class GeneratorComponent implements OnInit {
     const componentIndex = this.components.indexOf(component);
 
     if (componentIndex !== -1) {
-      // Remove component from both view and array
       this.container.remove(componentIndex);
       this.components.splice(componentIndex, 1);
+      this.testForm.components.splice(componentIndex, 1);
     }
   }
 
@@ -129,6 +134,10 @@ export class GeneratorComponent implements OnInit {
       const temp = this.components[componentIndex - 1]
       this.components[componentIndex - 1] = this.components[componentIndex]
       this.components[componentIndex] = temp
+
+      const ttemp = this.testForm.components[componentIndex - 1]
+      this.testForm.components[componentIndex - 1] = this.testForm.components[componentIndex]
+      this.testForm.components[componentIndex] = ttemp
     }
   }
 
@@ -150,6 +159,10 @@ export class GeneratorComponent implements OnInit {
       const temp = this.components[componentIndex + 1]
       this.components[componentIndex + 1] = this.components[componentIndex]
       this.components[componentIndex] = temp
+
+      const ttemp = this.testForm.components[componentIndex + 1]
+      this.testForm.components[componentIndex + 1] = this.testForm.components[componentIndex]
+      this.testForm.components[componentIndex] = ttemp
     }
 
   }
@@ -159,8 +172,9 @@ export class GeneratorComponent implements OnInit {
     this.ngbModal.open(content)
   }
 
-  saveForm(): void {
-    
+  saveForm() {
+    console.log('saveForm() works!')
+    this.http.post("http://localhost:3000/api/json", this.testForm).subscribe(() => {})
   }
 
   ngOnInit(): void {

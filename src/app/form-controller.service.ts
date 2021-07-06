@@ -9,6 +9,7 @@ export interface Choice {
 }
   
 export interface TestField {
+  componentId?: number,
   label: string,
   description?: string,
   placeholder?: string,
@@ -16,6 +17,11 @@ export interface TestField {
   choices?: Choice[],
   componentClass: any,
   isIncludeCheckAll?: boolean,
+}
+
+export interface TestForm {
+  title: string,
+  components: TestField[],
 }
   
 @Injectable({

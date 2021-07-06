@@ -1,0 +1,44 @@
+{
+  "title": "Пробуем",
+  "components": [
+    {
+      "label": "Чекибоксы",
+      "description": "",
+      "placeholder": "",
+      "required": false,
+      "choices": [
+        { "id": 0, "title": "Возможно", "active": false },
+        { "id": 1, "title": " а может и неь", "active": false }
+      ],
+      "isIncludeCheckAll": true
+    },
+    {
+      "label": "ФИО",
+      "description": "Приветик",
+      "placeholder": "Пукни в пакетик",
+      "required": true,
+      "choices": [{ "id": 0, "title": "", "active": false }],
+      "isIncludeCheckAll": false
+    },
+    {
+      "label": "Навыки",
+      "description": "",
+      "placeholder": "",
+      "required": false,
+      "choices": [
+        { "id": 0, "title": "Программирование", "active": false },
+        { "id": 1, "title": " Картошка", "active": false },
+        { "id": 2, "title": " МакДональдс", "active": false }
+      ],
+      "isIncludeCheckAll": false
+    },
+    {
+      "label": "Абоба",
+      "description": "",
+      "placeholder": "",
+      "required": true,
+      "choices": [{ "id": 0, "title": "", "active": false }],
+      "isIncludeCheckAll": false
+    }
+  ]
+}

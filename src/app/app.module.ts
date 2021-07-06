@@ -10,6 +10,7 @@ import { TestCheckboxComponent } from './test-checkbox/test-checkbox.component';
 import { FormsModule } from '@angular/forms';
 import { GeneratorComponent } from './generator/generator.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     FormsModule,
     NgbModule,
